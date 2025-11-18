@@ -448,6 +448,254 @@ If you encounter issues not covered in this guide, please:
 2. Review the [examples](./examples) directory
 3. Open an issue on GitHub
 
+## Quick Reference: v0.1.x vs v0.2.x
+
+| Operation | v0.1.x | v0.2.x |
+|-----------|--------|--------|
+| **Import** | `require('mbox').mbox` | `require('mbox').Mbox` |
+| **Open file** | `fs.openSync(file, 'r+')` | Just pass filename |
+| **Create instance** | `new mbox(fd, options)` | `await Mbox.create(filename, options)` |
+| **Wait for ready** | Listen for `'init'` event | `await mbox.ready()` or `await Mbox.create()` |
+| **Get message** | `box.get(0)` + listen for `'get'` | `await mbox.get(0)` |
+| **Delete message** | `box.delete(0)` + listen for `'delete'` | `await mbox.delete(0)` |
+| **Write changes** | `box.write(file)` + listen for `'write'` | `await mbox.write(file)` |
+| **Buffer size option** | `bufsize: 4096` | `bufferSize: 65536` |
+| **Temp path option** | `tmppath: '/tmp'` | Not needed (handled internally) |
+| **After write()** | File descriptor closed | Mbox still usable |
+| **Error handling** | Check event `success` param | `try/catch` with Promises |
+| **TypeScript** | No types | Full TypeScript support |
+| **Dependencies** | Requires `unixlib` | Zero dependencies |
+| **Encoding** | Fixed | Configurable per message |
+| **Streaming** | Not supported | `asStream: true` option |
+| **Index caching** | Not supported | `exportIndex()` / `savedIndex` |
+
+## Real-World Migration Scenarios
+
+### Scenario 1: Email Archive Tool
+
+**v0.1.x Implementation:**
+```javascript
+const fs = require('fs');
+const mbox = require('mbox').mbox;
+
+function archiveEmails(inputFile, outputFile, filterFn) {
+  const fd = fs.openSync(inputFile, 'r+');
+  const box = new mbox(fd);
+  let currentIndex = 0;
+
+  box.on('init', (status) => {
+    if (status && box.count() > 0) {
+      box.get(currentIndex);
+    }
+  });
+
+  box.on('get', (success, index, data) => {
+    if (success) {
+      if (!filterFn(data)) {
+        box.delete(index);
+      }
+      currentIndex++;
+      if (currentIndex < box.count()) {
+        box.get(currentIndex);
+      } else {
+        box.write(outputFile);
+      }
+    }
+  });
+
+  box.on('write', () => {
+    console.log('Archive complete');
+  });
+}
+```
+
+**v0.2.x Implementation:**
+```javascript
+const { Mbox } = require('mbox');
+
+async function archiveEmails(inputFile, outputFile, filterFn) {
+  const mbox = await Mbox.create(inputFile);
+  const count = mbox.count();
+
+  for (let i = 0; i < count; i++) {
+    const message = await mbox.get(i);
+    if (!filterFn(message)) {
+      await mbox.delete(i);
+    }
+  }
+
+  await mbox.write(outputFile);
+  console.log('Archive complete');
+}
+
+// Usage
+archiveEmails('inbox.mbox', 'archive.mbox', (msg) => {
+  return msg.includes('important');
+}).catch(console.error);
+```
+
+**Benefits:**
+- 80% less code
+- Easier to read and maintain
+- Built-in error handling with try/catch
+- No callback hell
+
+### Scenario 2: Batch Message Processor
+
+**v0.1.x Implementation:**
+```javascript
+const fs = require('fs');
+const mbox = require('mbox').mbox;
+
+const fd = fs.openSync('mailbox.mbox', 'r+');
+const box = new mbox(fd);
+const results = [];
+
+box.on('init', (status) => {
+  if (status) {
+    processNextMessage(0);
+  }
+});
+
+function processNextMessage(index) {
+  if (index >= box.count()) {
+    console.log('Processing complete', results);
+    return;
+  }
+  box.get(index);
+}
+
+box.on('get', (success, index, data) => {
+  if (success) {
+    // Process message
+    results.push({ index, size: data.length });
+    processNextMessage(index + 1);
+  }
+});
+```
+
+**v0.2.x Implementation:**
+```javascript
+const { Mbox } = require('mbox');
+
+async function processMessages() {
+  const mbox = await Mbox.create('mailbox.mbox');
+  const results = [];
+
+  for (let i = 0; i < mbox.count(); i++) {
+    const message = await mbox.get(i);
+    results.push({ index: i, size: message.length });
+  }
+
+  console.log('Processing complete', results);
+}
+
+processMessages().catch(console.error);
+```
+
+**Benefits:**
+- Sequential logic instead of callbacks
+- Easier to add error handling
+- Can use modern JS features (async/await, for-of)
+
+### Scenario 3: Large Mailbox Handler
+
+**New in v0.2.x - Not possible in v0.1.x:**
+```javascript
+const { Mbox } = require('mbox');
+const fs = require('fs');
+
+async function handleLargeMailbox() {
+  // Use cached index for instant startup
+  const indexPath = 'mailbox.mbox.index.json';
+  let mbox;
+
+  if (fs.existsSync(indexPath)) {
+    const savedIndex = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+    mbox = await Mbox.create('mailbox.mbox', { savedIndex });
+    console.log('Loaded from cache');
+  } else {
+    mbox = await Mbox.create('mailbox.mbox');
+    fs.writeFileSync(indexPath, JSON.stringify(mbox.exportIndex()));
+    console.log('Created new index');
+  }
+
+  // Stream large messages to avoid memory issues
+  for (let i = 0; i < mbox.count(); i++) {
+    const stream = await mbox.get(i, { asStream: true });
+    const outputFile = `message-${i}.eml`;
+
+    await new Promise((resolve, reject) => {
+      const writeStream = fs.createWriteStream(outputFile);
+      stream.pipe(writeStream);
+      writeStream.on('finish', resolve);
+      writeStream.on('error', reject);
+    });
+  }
+}
+
+handleLargeMailbox().catch(console.error);
+```
+
+**Benefits:**
+- Index caching for instant startup (10-100x faster)
+- Stream support for large messages
+- Memory efficient processing
+
+### Scenario 4: Integration with Web API
+
+**v0.2.x makes this much easier:**
+```javascript
+const { Mbox } = require('mbox');
+const express = require('express');
+
+const app = express();
+let mbox;
+
+// Initialize mbox once at startup
+async function init() {
+  mbox = await Mbox.create('mailbox.mbox');
+  console.log(`Loaded ${mbox.count()} messages`);
+}
+
+// REST API endpoints
+app.get('/api/messages', (req, res) => {
+  res.json({
+    count: mbox.count(),
+    total: mbox.totalCount(),
+  });
+});
+
+app.get('/api/messages/:id', async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const message = await mbox.get(id);
+    res.send(message);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+});
+
+app.delete('/api/messages/:id', async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    await mbox.delete(id);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+init().then(() => {
+  app.listen(3000, () => console.log('Server running on port 3000'));
+});
+```
+
+**Benefits:**
+- Natural async/await integration with Express
+- Easy error handling
+- Mbox instance stays open and reusable
+
 ## Summary Checklist
 
 - [ ] Update `require('mbox').mbox` to `require('mbox').Mbox`
@@ -457,3 +705,4 @@ If you encounter issues not covered in this guide, please:
 - [ ] Consider migrating to async/await for better error handling
 - [ ] Add TypeScript types if using TypeScript
 - [ ] Test thoroughly with your actual mbox files
+- [ ] Review the [examples](./examples) directory for practical code samples
