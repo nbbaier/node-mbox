@@ -1,3 +1,29 @@
+# Editor files
 .*.sw?
+*.swp
+.vscode/
+.idea/
+
+# Dependencies
 node_modules/
+
+# Build outputs
+dist/
+*.tsbuildinfo
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Test files
 mbox
+test-mbox-*
+*.test.mbox
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
