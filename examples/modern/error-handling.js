@@ -17,7 +17,7 @@ async function main() {
   // Example 1: Handling initialization errors
   try {
     console.log('Example 1: File not found error');
-    const mbox = await Mbox.create('nonexistent.mbox');
+    await Mbox.create('nonexistent.mbox');
   } catch (error) {
     console.log(`✓ Caught error: ${error.message}`);
   }

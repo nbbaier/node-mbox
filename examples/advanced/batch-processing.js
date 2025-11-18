@@ -108,7 +108,7 @@ async function main() {
     console.log(`Processed: ${results.processed}`);
     console.log(`Errors: ${results.errors}`);
     console.log(`Total bytes: ${results.totalBytes.toLocaleString()}`);
-    console.log(`Average size: ${Math.round(results.totalBytes / results.processed).toLocaleString()} bytes`);
+    console.log(`Average size: ${results.processed > 0 ? Math.round(results.totalBytes / results.processed).toLocaleString() : 0} bytes`);
     console.log(`Duration: ${duration}ms`);
     console.log(`Throughput: ${(results.processed / (duration / 1000)).toFixed(2)} messages/sec`);
 

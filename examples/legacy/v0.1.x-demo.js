@@ -22,7 +22,7 @@ var fd = fs.openSync(filename, "r+");  // v0.1.x required file descriptors
 var box = new mbox(fd);
 
 box.on("error", function(err) {
-    console.log("Some error occured: " + util.inspect(err));
+    console.log("Some error occurred: " + util.inspect(err));
     console.log("Closing fd and quitting");
     fs.close(fd);
     process.exit(1);

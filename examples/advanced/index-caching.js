@@ -11,7 +11,6 @@
 
 const { Mbox } = require('mbox');
 const fs = require('fs');
-const path = require('path');
 
 async function main() {
   const filename = process.argv[2] || 'mailbox.mbox';
@@ -55,7 +54,7 @@ async function main() {
     console.log('\n=== Performance Comparison ===');
     console.log(`Without cache: ${time1}ms`);
     console.log(`With cache:    ${time2}ms`);
-    console.log(`Speedup:       ${(time1 / time2).toFixed(2)}x faster`);
+    console.log(`Speedup:       ${time2 > 0 ? (time1 / time2).toFixed(2) : 'N/A'}x faster`);
     console.log(`Time saved:    ${time1 - time2}ms`);
 
     // Verify cache is valid

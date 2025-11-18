@@ -10,7 +10,6 @@
  */
 
 const { Mbox } = require('mbox');
-const path = require('path');
 
 async function main() {
   const filename = process.argv[2] || 'mailbox.mbox';
