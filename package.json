@@ -1,15 +1,48 @@
 {
-	"name": "mbox",
-    "version": "v0.1.2",
-    "description": "Evented wrapper for mboxrd files",
-    "homepage": "https://github.com/ditesh/node-mbox",
-    "keywords": ["mbox", "mboxrd", "mail", "email"],
-    "author": {
-        "name": "Ditesh Shashikant Gathani",
-        "email": "ditesh@gathani.org",
-        "url": "http://ditesh.gathani.org/blog/"
-    },
-    "dependencies": ["unixlib"],
-    "repository": { "type" : "git", "url" : "https://github.com/ditesh/node-mbox.git" },
-    "main": "main.js"
+  "name": "mbox",
+  "version": "0.2.0",
+  "description": "Modern TypeScript wrapper for mboxrd files with stream-based architecture",
+  "homepage": "https://github.com/ditesh/node-mbox",
+  "keywords": ["mbox", "mboxrd", "mail", "email", "typescript", "streams"],
+  "author": {
+    "name": "Ditesh Shashikant Gathani",
+    "email": "ditesh@gathani.org",
+    "url": "http://ditesh.gathani.org/blog/"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.5.0",
+    "prettier": "^3.0.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ditesh/node-mbox.git"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "license": "MIT"
 }
