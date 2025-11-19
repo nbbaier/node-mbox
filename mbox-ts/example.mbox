@@ -1,0 +1,631 @@
+From 1818882090741031907@xxx Thu Dec 19 15:12:14 +0000 2024
+X-GM-THRID: 1818882090741031907
+X-Gmail-Labels: Inbox,Opened,Category Promotions,tmp-course
+Delivered-To: nico.baier@gmail.com
+Received: by 2002:a05:6839:92c7:b0:8da:9175:9c9a with SMTP id rr7csp841579nkc;
+        Thu, 19 Dec 2024 07:12:15 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFCdTPzQdurrZrZ3Sf+aEorF+4h+x6EK3xyRH00wzV6OKQkGxVq9260Cn/rhcJfKTQrXFDQ
+X-Received: by 2002:a05:600c:1382:b0:434:a75b:5f59 with SMTP id 5b1f17b1804b1-4365534140bmr72209975e9.3.1734621134721;
+        Thu, 19 Dec 2024 07:12:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1734621134; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Dz7AgM5yQ4qRA7uiTcQjutXgGZtNKi8dOWx1alEzZXWOOGnj8MjRW6dP+adQft7+2+
+         3EDQK+I56TFdZe4JHuKdPcofw000mMi2WWBl2eIwG7zE+n3lJ4ekZHOdjyk+B0nKeDc+
+         Bwv06xTwlZVjViohgD9REV1TVbf/D51JnuWFZ5GtslPUDdJ2p7Af8aEVt3qgPeC88KMF
+         6fAxUGILv4MzOB1mbKaAsxK15fk/3if6Eo0UWwvnEonpVwpuzKshm2CHT/MiPHMCDlbI
+         hvqyb5YBt0t6ZzFB7iVcW2zQCalzEgax03EiaajwfH+/ZbXRPLDjNoLziIH/MROxOXza
+         2hnQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:list-unsubscribe:from:message-id:list-unsubscribe-post
+         :subject:reply-to:date:mime-version:to:dkim-signature;
+        bh=XNcQzUBn5VBl6JyLKJHI9v7NuX1JvCeIDZx7lYVee3o=;
+        fh=L/FV2OJ5XzuDyR/EYWdOMgrn31V1TiDz/rnuUMWeyYI=;
+        b=RojN96vYcfK5bCoK/0yxkkikn9DMkirhhw/gkB834R/zKwfTvURRMyjxPOH+eGepDH
+         5azrDpi5zRtca6JGdJajmNbMyo0yxSejoe9EyOtxem8DFgV4e1+3D2P3pKsLn97UL0UD
+         ThkotN8Gcsa348/V56nLSroFPGgGGoQmzBH2t3NN6sOVpKhMbfcoYWT/LcNlSb+GBMyS
+         c05zpIM6252B1ggMGQkxWcqy9OfOcPw8cwiQNreibQvCu+HEUkZ0RHrJFeTcs5hcr8tu
+         rvuHInjp+hl0hm5D8Y3OtorOyJlEb60PzIz19T3yVlJ8ZiO34eeLBYAfNLTHwKoq/+ND
+         UKAw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@superlist.com header.s=intercom-eu header.b=EkQihVvi;
+       spf=pass (google.com: domain of msprvs1=20083oagcembv=bounces-13190-309@outbound-eu.intercom.superlist.com designates 147.253.221.178 as permitted sender) smtp.mailfrom="msprvs1=20083oAgceMbv=bounces-13190-309@outbound-eu.intercom.superlist.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=superlist.com
+Return-Path: <msprvs1=20083oAgceMbv=bounces-13190-309@outbound-eu.intercom.superlist.com>
+Received: from mta-221-178.sparkpostmail.com (mta-221-178.sparkpostmail.com. [147.253.221.178])
+        by mx.google.com with ESMTPS id ffacd0b85a97d-38a1c8b8767si1027522f8f.372.2024.12.19.07.12.14
+        for <nico.baier@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 19 Dec 2024 07:12:14 -0800 (PST)
+Received-SPF: pass (google.com: domain of msprvs1=20083oagcembv=bounces-13190-309@outbound-eu.intercom.superlist.com designates 147.253.221.178 as permitted sender) client-ip=147.253.221.178;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@superlist.com header.s=intercom-eu header.b=EkQihVvi;
+       spf=pass (google.com: domain of msprvs1=20083oagcembv=bounces-13190-309@outbound-eu.intercom.superlist.com designates 147.253.221.178 as permitted sender) smtp.mailfrom="msprvs1=20083oAgceMbv=bounces-13190-309@outbound-eu.intercom.superlist.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=superlist.com
+X-MSFBL: rlR7XOxN1WS1e6crpif4yGFSy+E3OTGrPT++pBrooRI=|eyJ0ZW5hbnRfaWQiOiJ
+	zcGNldSIsInN1YmFjY291bnRfaWQiOiIzMDkiLCJjdXN0b21lcl9pZCI6IjEzMTk
+	wIiwibWVzc2FnZV9pZCI6IjY3NTVjZTM3NjQ2Nzg3MjAxNmQ1IiwiciI6Im5pY28
+	uYmFpZXJAZ21haWwuY29tIn0=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=superlist.com;
+	s=intercom-eu; t=1734621134; i=@superlist.com;
+	bh=XNcQzUBn5VBl6JyLKJHI9v7NuX1JvCeIDZx7lYVee3o=;
+	h=To:Content-Type:Date:Subject:List-Unsubscribe-Post:Message-ID:
+	 From:List-Unsubscribe:From:To:Cc:Subject;
+	b=EkQihVviGY1uHr8FLBfV8nSLX1A1DW+m5OuWm/ER9w2hiNWyWi2gd8OnJ2WnSdEmf
+	 bN8V8w/sO574iYE8A4hulRyMmMDmOEWntK6DynJqvNyJNYemObZb7QpjfH9NKLcKdI
+	 Xoc/pawnzvB4iL08Ie7vhjWKrwTcGzHqbc4Az/QM=
+To: nico.baier@gmail.com
+Content-Type: multipart/alternative; boundary="_----AZcEkWQRgTUvam4UUjGE+A===_3D/69-63110-EC734676"
+MIME-Version: 1.0
+X-Mailgun-Variables: {"app_id":"a6qi4v4j","conversation_id":"202914601728886","user_id":"65bc2aec8271f2a38129f6ce","intercom_localized_email_content_id":"280458"}
+Date: Thu, 19 Dec 2024 15:12:14 +0000
+Reply-To: Niklas from Superlist <niklas.jansen@superlist.intercom-mail.eu>
+Subject: =?utf-8?B?SGFwcHkgSG9saWRheXMgZnJvbSBTdXBlcmxpc3Qg4p2E77iP?=
+X-Intercom-App-Id: a6qi4v4j
+X-Intercom-Bin: 300
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Message-ID: <03f9e118-af8383bd-1734621133-202914601728886-2028746@outbound-eu.intercom.superlist.com>
+X-Report-Abuse: Please report spam or abuse to abuse@intercom.io
+From: "Niklas from Superlist" <niklas@superlist.com>
+X-Auto-Response-Suppress: OOF, AutoReply
+List-Unsubscribe: <mailto:unsubscribe_202914601728886_65bc2aec8271f2a38129f6ce@superlist.intercom-mail.eu>, <https://superlist.intercom-mail.eu/subscriptions/unsubscribe_post?app_id=a6qi4v4j&conversation_id=202914601728886&user_id=65bc2aec8271f2a38129f6ce>
+Feedback-ID: email:877131:a6qi4v4j:intercom
+
+--_----AZcEkWQRgTUvam4UUjGE+A===_3D/69-63110-EC734676
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Nico, =0D=0A Thank you so much for being a Superlist user in 2024! =0D=
+=0A This was a big year for us! We launched Superlist 1.0 in February and t=
+hen got to work and shipped 27 app updates this year. =0D=0A We launched hi=
+ghly requested features like Reminders, Repeating Tasks, Offline Mode and N=
+atural Language Processing. We introduced Team Workspaces and a new view to=
+ see all Updates from your team. We shipped improvements like Tap To Open T=
+asks, a better Navigation and Content Editing Experience on mobile, Search =
+for tasks and lists, Widgets for iOS and Android and now Sublists to help y=
+ou better organize your workspace. And of course we invested heavily in AI,=
+ with features like Make and our AI voice assistant Talk that turns your vo=
+ice notes into lists of tasks and notes. =0D=0A We=E2=80=99re just getting =
+started and we have big plans for 2025. =0D=0A Productivity is having its S=
+potify moment. =0D=0A Remember all the manual work of managing digital musi=
+c before Spotify =E2=80=94downloading titles, managing folders, naming file=
+s, adding artwork and meta data by hand=3F That=E2=80=99s task management i=
+n 2024. Leveraging AI, we=E2=80=99re building a future where your task mana=
+gement app does this work for you, so you can focus on what matters: creati=
+ng and achieving great things. =0D=0A Here's what you can expect in 2025: =
+=0D=0A 1. Best-in-class AI voice recording features to turn your thoughts a=
+nd meetings into actions, =0D=0A2. New AI-powered editing and task manageme=
+nt capabilities, =0D=0A3. Quality of life improvements such as more intuiti=
+ve sharing, multi select, improved reminders, labels, a better search, =0D=
+=0A4. Templates and better collaboration across lists and team spaces. =0D=
+=0A Thank you for being on this journey with us. We really appreciate your =
+support and feedback. =0D=0A Happy holidays, Niklas and the Superlist team
+--_----AZcEkWQRgTUvam4UUjGE+A===_3D/69-63110-EC734676
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w=
+3.org/TR/REC-html40/loose.dtd">=0D=0A<html style=3D"min-height: 100%; backg=
+round-color: #f3f3f3;">=0D=0A<head>=0D=0A<meta http-equiv=3D"Content-Type" =
+content=3D"text/html; charset=3DUTF-8">=0D=0A    <!-- Foundation styles -->=
+=0D=0A    =0D=0A    <style type=3D"text/css" data-premailer=3D"ignore">=0D=
+=0A        @media only screen and (max-width: 596px) {=0D=0A  table.body im=
+g {=0D=0A    width: auto;=0D=0A    height: auto; }=0D=0A=0D=0A  table.body =
+center {=0D=0A    min-width: 0 !important; }=0D=0A=0D=0A  table.body .conta=
+iner {=0D=0A    width: 95% !important; }=0D=0A=0D=0A  table.body .columns,=
+=0D=0A  table.body .column {=0D=0A    height: auto !important;=0D=0A    -mo=
+z-box-sizing: border-box;=0D=0A    -webkit-box-sizing: border-box;=0D=0A   =
+ box-sizing: border-box;=0D=0A    padding-left: 16px !important;=0D=0A    p=
+adding-right: 16px !important; }=0D=0A    table.body .columns .column,=0D=
+=0A    table.body .columns .columns,=0D=0A    table.body .column .column,=
+=0D=0A    table.body .column .columns {=0D=0A      padding-left: 0 !importa=
+nt;=0D=0A      padding-right: 0 !important; }=0D=0A=0D=0A  table.body .coll=
+apse .columns, table.body .collapse .column {=0D=0A    padding-left: 0 !imp=
+ortant;=0D=0A    padding-right: 0 !important; }=0D=0A=0D=0A  td.small-1,=0D=
+=0A  th.small-1 {=0D=0A    display: inline-block !important;=0D=0A    width=
+: 8.333333% !important; }=0D=0A=0D=0A  td.small-2,=0D=0A  th.small-2 {=0D=
+=0A    display: inline-block !important;=0D=0A    width: 16.666666% !import=
+ant; }=0D=0A=0D=0A  td.small-3,=0D=0A  th.small-3 {=0D=0A    display: inlin=
+e-block !important;=0D=0A    width: 25% !important; }=0D=0A=0D=0A  td.small=
+-4,=0D=0A  th.small-4 {=0D=0A    display: inline-block !important;=0D=0A   =
+ width: 33.333333% !important; }=0D=0A=0D=0A  td.small-5,=0D=0A  th.small-5=
+ {=0D=0A    display: inline-block !important;=0D=0A    width: 41.666666% !i=
+mportant; }=0D=0A=0D=0A  td.small-6,=0D=0A  th.small-6 {=0D=0A    display: =
+inline-block !important;=0D=0A    width: 50% !important; }=0D=0A=0D=0A  td.=
+small-7,=0D=0A  th.small-7 {=0D=0A    display: inline-block !important;=0D=
+=0A    width: 58.333333% !important; }=0D=0A=0D=0A  td.small-8,=0D=0A  th.s=
+mall-8 {=0D=0A    display: inline-block !important;=0D=0A    width: 66.6666=
+66% !important; }=0D=0A=0D=0A  td.small-9,=0D=0A  th.small-9 {=0D=0A    dis=
+play: inline-block !important;=0D=0A    width: 75% !important; }=0D=0A=0D=
+=0A  td.small-10,=0D=0A  th.small-10 {=0D=0A    display: inline-block !impo=
+rtant;=0D=0A    width: 83.333333% !important; }=0D=0A=0D=0A  td.small-11,=
+=0D=0A  th.small-11 {=0D=0A    display: inline-block !important;=0D=0A    w=
+idth: 91.666666% !important; }=0D=0A=0D=0A  td.small-12,=0D=0A  th.small-12=
+ {=0D=0A    display: inline-block !important;=0D=0A    width: 100% !importa=
+nt; }=0D=0A=0D=0A  .columns td.small-12,=0D=0A  .column td.small-12,=0D=0A =
+ .columns th.small-12,=0D=0A  .column th.small-12 {=0D=0A    display: block=
+ !important;=0D=0A    width: 100% !important; }=0D=0A=0D=0A  table.body td.=
+small-offset-1,=0D=0A  table.body th.small-offset-1 {=0D=0A    margin-left:=
+ 8.333333% !important;=0D=0A    Margin-left: 8.333333% !important; }=0D=0A=
+=0D=0A  table.body td.small-offset-2,=0D=0A  table.body th.small-offset-2 {=
+=0D=0A    margin-left: 16.666666% !important;=0D=0A    Margin-left: 16.6666=
+66% !important; }=0D=0A=0D=0A  table.body td.small-offset-3,=0D=0A  table.b=
+ody th.small-offset-3 {=0D=0A    margin-left: 25% !important;=0D=0A    Marg=
+in-left: 25% !important; }=0D=0A=0D=0A  table.body td.small-offset-4,=0D=0A=
+  table.body th.small-offset-4 {=0D=0A    margin-left: 33.333333% !importan=
+t;=0D=0A    Margin-left: 33.333333% !important; }=0D=0A=0D=0A  table.body t=
+d.small-offset-5,=0D=0A  table.body th.small-offset-5 {=0D=0A    margin-lef=
+t: 41.666666% !important;=0D=0A    Margin-left: 41.666666% !important; }=0D=
+=0A=0D=0A  table.body td.small-offset-6,=0D=0A  table.body th.small-offset-=
+6 {=0D=0A    margin-left: 50% !important;=0D=0A    Margin-left: 50% !import=
+ant; }=0D=0A=0D=0A  table.body td.small-offset-7,=0D=0A  table.body th.smal=
+l-offset-7 {=0D=0A    margin-left: 58.333333% !important;=0D=0A    Margin-l=
+eft: 58.333333% !important; }=0D=0A=0D=0A  table.body td.small-offset-8,=0D=
+=0A  table.body th.small-offset-8 {=0D=0A    margin-left: 66.666666% !impor=
+tant;=0D=0A    Margin-left: 66.666666% !important; }=0D=0A=0D=0A  table.bod=
+y td.small-offset-9,=0D=0A  table.body th.small-offset-9 {=0D=0A    margin-=
+left: 75% !important;=0D=0A    Margin-left: 75% !important; }=0D=0A=0D=0A  =
+table.body td.small-offset-10,=0D=0A  table.body th.small-offset-10 {=0D=0A=
+    margin-left: 83.333333% !important;=0D=0A    Margin-left: 83.333333% !i=
+mportant; }=0D=0A=0D=0A  table.body td.small-offset-11,=0D=0A  table.body t=
+h.small-offset-11 {=0D=0A    margin-left: 91.666666% !important;=0D=0A    M=
+argin-left: 91.666666% !important; }=0D=0A=0D=0A  table.body table.columns =
+td.expander,=0D=0A  table.body table.columns th.expander {=0D=0A    display=
+: none !important; }=0D=0A=0D=0A  table.body .right-text-pad,=0D=0A  table.=
+body .text-pad-right {=0D=0A    padding-left: 10px !important; }=0D=0A=0D=
+=0A  table.body .left-text-pad,=0D=0A  table.body .text-pad-left {=0D=0A   =
+ padding-right: 10px !important; }=0D=0A=0D=0A  table.menu {=0D=0A    width=
+: 100% !important; }=0D=0A    table.menu td,=0D=0A    table.menu th {=0D=0A=
+      width: auto !important;=0D=0A      display: inline-block !important; =
+}=0D=0A    table.menu.vertical td,=0D=0A    table.menu.vertical th, table.m=
+enu.small-vertical td,=0D=0A    table.menu.small-vertical th {=0D=0A      d=
+isplay: block !important; }=0D=0A=0D=0A  table.menu[align=3D"center"] {=0D=
+=0A    width: auto !important; }=0D=0A=0D=0A  table.button.small-expand,=0D=
+=0A  table.button.small-expanded {=0D=0A    width: 100% !important; }=0D=0A=
+    table.button.small-expand table,=0D=0A    table.button.small-expanded t=
+able {=0D=0A      width: 100%; }=0D=0A      table.button.small-expand table=
+ a,=0D=0A      table.button.small-expanded table a {=0D=0A        text-alig=
+n: center !important;=0D=0A        width: 100% !important;=0D=0A        pad=
+ding-left: 0 !important;=0D=0A        padding-right: 0 !important; }=0D=0A =
+   table.button.small-expand center,=0D=0A    table.button.small-expanded c=
+enter {=0D=0A      min-width: 0; } }=0D=0A.hide-for-large {=0D=0A  display:=
+ none !important;=0D=0A  =0D=0A  overflow: hidden;=0D=0A  max-height: 0;=0D=
+=0A  font-size: 0;=0D=0A  width: 0;=0D=0A  line-height: 0; }=0D=0A  @media =
+only screen and (max-width: 596px) {=0D=0A    .hide-for-large {=0D=0A      =
+display: block !important;=0D=0A      width: auto !important;=0D=0A      ov=
+erflow: visible !important;=0D=0A      max-height: none !important;=0D=0A  =
+    font-size: inherit !important;=0D=0A      line-height: inherit !importa=
+nt; } }=0D=0A=0D=0Atable.body table.container .hide-for-large * {=0D=0A   }=
+=0D=0A=0D=0A@media only screen and (max-width: 596px) {=0D=0A  table.body t=
+able.container .hide-for-large,=0D=0A  table.body table.container .row.hide=
+-for-large {=0D=0A    display: table !important;=0D=0A    width: 100% !impo=
+rtant; } }=0D=0A=0D=0A@media only screen and (max-width: 596px) {=0D=0A  ta=
+ble.body table.container .callout-inner.hide-for-large {=0D=0A    display: =
+table-cell !important;=0D=0A    width: 100% !important; } }=0D=0A=0D=0A@med=
+ia only screen and (max-width: 596px) {=0D=0A  table.body table.container .=
+show-for-large {=0D=0A    display: none !important;=0D=0A    width: 0;=0D=
+=0A    =0D=0A    overflow: hidden; } }=0D=0A=0D=0Atable.text-center,=0D=0At=
+h.text-center,=0D=0Atd.text-center,=0D=0Ah1.text-center,=0D=0Ah2.text-cente=
+r,=0D=0Ah3.text-center,=0D=0Ah4.text-center,=0D=0Ah5.text-center,=0D=0Ah6.t=
+ext-center,=0D=0Ap.text-center,=0D=0Aspan.text-center {=0D=0A  text-align: =
+center; }=0D=0Atable.text-left,=0D=0Ath.text-left,=0D=0Atd.text-left,=0D=0A=
+h1.text-left,=0D=0Ah2.text-left,=0D=0Ah3.text-left,=0D=0Ah4.text-left,=0D=
+=0Ah5.text-left,=0D=0Ah6.text-left,=0D=0Ap.text-left,=0D=0Aspan.text-left {=
+=0D=0A  text-align: left; }=0D=0Atable.text-right,=0D=0Ath.text-right,=0D=
+=0Atd.text-right,=0D=0Ah1.text-right,=0D=0Ah2.text-right,=0D=0Ah3.text-righ=
+t,=0D=0Ah4.text-right,=0D=0Ah5.text-right,=0D=0Ah6.text-right,=0D=0Ap.text-=
+right,=0D=0Aspan.text-right {=0D=0A  text-align: right; }=0D=0A=0D=0Aspan.t=
+ext-center {=0D=0A  display: block;=0D=0A  width: 100%;=0D=0A  text-align: =
+center; }=0D=0A=0D=0A@media only screen and (max-width: 596px) {=0D=0A  .sm=
+all-float-center {=0D=0A    margin: 0 auto !important;=0D=0A    float: none=
+ !important;=0D=0A    text-align: center !important; }=0D=0A=0D=0A  .small-=
+text-center {=0D=0A    text-align: center !important; }=0D=0A=0D=0A  .small=
+-text-left {=0D=0A    text-align: left !important; }=0D=0A=0D=0A  .small-te=
+xt-right {=0D=0A    text-align: right !important; } }=0D=0Aimg.float-left {=
+=0D=0A  float: left;=0D=0A  text-align: left; }=0D=0A=0D=0Aimg.float-right =
+{=0D=0A  float: right;=0D=0A  text-align: right; }=0D=0A=0D=0Aimg.float-cen=
+ter,=0D=0Aimg.text-center {=0D=0A  margin: 0 auto;=0D=0A  Margin: 0 auto;=
+=0D=0A  float: none;=0D=0A  text-align: center; }=0D=0A=0D=0Atable.float-ce=
+nter,=0D=0Atd.float-center,=0D=0Ath.float-center {=0D=0A  margin: 0 auto;=
+=0D=0A  Margin: 0 auto;=0D=0A  float: none;=0D=0A  text-align: center; }=0D=
+=0A=0D=0A    </style>=0D=0A    <!-- Foundations Overrides -->=0D=0A    <!--=
+ Add 16px margin above tables to keep consistent with the editor -->=0D=0A =
+   <style>=0D=0A        table.intercom-responsive-layout-table {=0D=0A     =
+       margin-bottom: 16px;=0D=0A            margin-top: 16px;=0D=0A       =
+ }=0D=0A        table.intercom-responsive-layout-table td {=0D=0A          =
+  padding-bottom: 0px;=0D=0A        }=0D=0A        div.intercom-social-cont=
+ainer table.menu {=0D=0A          width: auto !important;=0D=0A        }=0D=
+=0A    </style>=0D=0A    <!-- Default styles -->=0D=0A    <style>=0D=0A    =
+    .intercom-align-center img,=0D=0A        .button.intercom-align-center =
+{=0D=0A            margin-left: auto;=0D=0A            margin-right: auto;=
+=0D=0A        }=0D=0A=0D=0A        table.body .intercom-h2b-button,=0D=0A  =
+      table.body table.button .intercom-foundation-button {=0D=0A          =
+  margin-bottom: 8px;=0D=0A            background-color: #2199e8;=0D=0A    =
+        border: 2px solid #2199e8;=0D=0A            padding: 12px 35px;=0D=
+=0A            font-size: 14px;=0D=0A            color: #FFF;=0D=0A        =
+    font-weight: bold;=0D=0A            border-radius: 3px;=0D=0A          =
+  display: inline-block;=0D=0A            text-decoration: none;=0D=0A     =
+   }=0D=0A=0D=0A        table.body table.button table td {=0D=0A           =
+ mso-shading: #2199e8;=0D=0A            background-color: transparent;=0D=
+=0A            border: none;=0D=0A        }=0D=0A=0D=0A        table.button=
+ table td {=0D=0A            line-height: 100%;=0D=0A        }=0D=0A=0D=0A =
+       div.intercom-interblocks-social table.menu th,=0D=0A        div.embe=
+rcom-prosemirror-composer-social table.menu th,=0D=0A        div.intercom-s=
+ocial-container table.menu th {=0D=0A            display: inline-block;=0D=
+=0A        }=0D=0A=0D=0A        div.intercom-interblocks-horizontal-rule td=
+,=0D=0A        div.embercom-prosemirror-composer-divider td,=0D=0A        d=
+iv.intercom-divider-container td {=0D=0A            padding-top: 1px;=0D=0A=
+        }=0D=0A=0D=0A        pre code {=0D=0A            color: #0A0A0A;=0D=
+=0A        }=0D=0A=0D=0A        h1 img,=0D=0A        h2 img,=0D=0A        p=
+ img,=0D=0A        ul li img,=0D=0A        ol li img,=0D=0A        table.bu=
+tton .intercom-foundation-button img,=0D=0A        .intercom-h2b-button img=
+ {=0D=0A            display: inline !important;=0D=0A        }=0D=0A    </s=
+tyle>=0D=0A    =0D=0A=0D=0A<style>.intercom-align-right {=0D=0A  text-align=
+: right !important;=0D=0A}=0D=0A.intercom-align-center {=0D=0A  text-align:=
+ center !important;=0D=0A}=0D=0A.intercom-align-left {=0D=0A  text-align: l=
+eft !important;=0D=0A}=0D=0A/* Over-ride for RTL */=0D=0A.right-to-left .in=
+tercom-align-right{=0D=0A  text-align: left !important;=0D=0A}=0D=0A.right-=
+to-left .intercom-align-left{=0D=0A  text-align: right !important;=0D=0A}=
+=0D=0A.right-to-left .intercom-align-left {=0D=0A  text-align:right !import=
+ant;=0D=0A}=0D=0A.right-to-left li {=0D=0A  text-align:right !important;=0D=
+=0A  direction: rtl;=0D=0A}=0D=0A.right-to-left .intercom-align-left img,=
+=0D=0A.right-to-left .intercom-align-left .intercom-h2b-button {=0D=0A  mar=
+gin-left: 0 !important;=0D=0A}=0D=0A.intercom-attachment,=0D=0A.intercom-at=
+tachments,=0D=0A.intercom-attachments td,=0D=0A.intercom-attachments th,=0D=
+=0A.intercom-attachments tr,=0D=0A.intercom-attachments tbody,=0D=0A.interc=
+om-attachments .icon,=0D=0A.intercom-attachments .icon img {=0D=0A  border:=
+ none !important;=0D=0A  box-shadow: none !important;=0D=0A  padding: 0 !im=
+portant;=0D=0A  margin: 0 !important;=0D=0A}=0D=0A.intercom-attachments {=
+=0D=0A  margin: 10px 0 !important;=0D=0A}=0D=0A.intercom-attachments .icon,=
+=0D=0A.intercom-attachments .icon img {=0D=0A  width: 16px !important;=0D=
+=0A  height: 16px !important;=0D=0A}=0D=0A.intercom-attachments .icon {=0D=
+=0A  padding-right: 5px !important;=0D=0A}=0D=0A.intercom-attachment {=0D=
+=0A  display: inline-block !important;=0D=0A  margin-bottom: 5px !important=
+;=0D=0A}=0D=0A=0D=0A.intercom-interblocks-content-card {=0D=0A  width: 334p=
+x !important;=0D=0A  max-height: 136px !important;=0D=0A  max-width: 100% !=
+important;=0D=0A  overflow: hidden !important;=0D=0A  border-radius: 20px !=
+important;=0D=0A  font-size: 16px !important;=0D=0A  border: 1px solid #e0e=
+0e0 !important;=0D=0A}=0D=0A=0D=0A.intercom-interblocks-link,=0D=0A.interco=
+m-interblocks-article-card {=0D=0A  text-decoration: none !important;=0D=0A=
+}=0D=0A=0D=0A.intercom-interblocks-article-icon {=0D=0A  width: 22.5% !impo=
+rtant;=0D=0A  height: 136px !important;=0D=0A  float: left !important;=0D=
+=0A  background-color: #fafafa !important;=0D=0A  background-image: url('ht=
+tps://superlist.intercom-mail.eu/assets/article_book-1a595be287f73c0d02f548=
+f513bfc831.png') !important;=0D=0A  background-repeat: no-repeat !important=
+;=0D=0A  background-size: 32px !important;=0D=0A  background-position: cent=
+er !important;=0D=0A}=0D=0A=0D=0A.intercom-interblocks-article-text {=0D=0A=
+  width: 77.5% !important;=0D=0A  float: right !important;=0D=0A  backgroun=
+d-color: #fff !important;=0D=0A}=0D=0A=0D=0A.intercom-interblocks-link-titl=
+e,=0D=0A.intercom-interblocks-article-title {=0D=0A  color: #519dd4 !import=
+ant;=0D=0A  font-size: 15px !important;=0D=0A  margin: 16px 18px 12px !impo=
+rtant;=0D=0A  line-height: 1.3em !important;=0D=0A  overflow: hidden !impor=
+tant;=0D=0A}=0D=0A=0D=0A.intercom-interblocks-link-description,=0D=0A.inter=
+com-interblocks-article-body {=0D=0A  margin: 0 18px 12px !important;=0D=0A=
+  font-size: 14px !important;=0D=0A  color: #65757c !important;=0D=0A  line=
+-height: 1.3em !important;=0D=0A}=0D=0A=0D=0A.intercom-interblocks-link-aut=
+hor,=0D=0A.intercom-interblocks-article-author {=0D=0A  margin: 10px 15px !=
+important;=0D=0A  height: 24px !important;=0D=0A  line-height: normal !impo=
+rtant;=0D=0A}=0D=0A=0D=0A.intercom-interblocks-link-author-avatar,=0D=0A.in=
+tercom-interblocks-article-author-avatar {=0D=0A  width: 16px !important;=
+=0D=0A  height: 16px !important;=0D=0A  display: inline-block !important;=
+=0D=0A  vertical-align: middle !important;=0D=0A  float: left;=0D=0A  margi=
+n-right: 5px;=0D=0A}=0D=0A=0D=0A.intercom-interblocks-link-author-avatar-im=
+age,=0D=0A.intercom-interblocks-article-author-avatar-image {=0D=0A  width:=
+ 16px !important;=0D=0A  height: 16px !important;=0D=0A  border-radius: 50%=
+ !important;=0D=0A  margin: 0 !important;=0D=0A  vertical-align: top !impor=
+tant;=0D=0A  font-size: 12px !important;=0D=0A}=0D=0A=0D=0A.intercom-interb=
+locks-link-author-name,=0D=0A.intercom-interblocks-article-author-name {=0D=
+=0A  color: #74848b !important;=0D=0A  margin: 0 0 0 5px !important;=0D=0A =
+ font-size: 12px !important;=0D=0A  font-weight: 500 !important;=0D=0A  ove=
+rflow: hidden !important;=0D=0A}=0D=0A=0D=0A.intercom-interblocks-article-w=
+ritten-by {=0D=0A  color: #8897a4 !important;=0D=0A  margin: 1px 0 0 5px !i=
+mportant;=0D=0A  font-size: 12px !important;=0D=0A  overflow: hidden !impor=
+tant;=0D=0A  vertical-align: middle !important;=0D=0A  float: left !importa=
+nt;=0D=0A}=0D=0A</style>=0D=0A  <style id=3D"message_level_styles">=0D=0A=
+=0D=0A  =0D=0A    .intercom-template-body,=0D=0A    table.intercom-template=
+-body {=0D=0A      background-color: #FFFFFF;=0D=0A    }=0D=0A  =0D=0A=0D=
+=0A  =0D=0A    .intercom-template-body .intercom-template-content {=0D=0A  =
+    background-color: #FFFFFF;=0D=0A    }=0D=0A  =0D=0A=0D=0A  =0D=0A=0D=0A=
+  =0D=0A    body h2 {=0D=0A      font-size: 22px;=0D=0A    }=0D=0A  =0D=0A=
+=0D=0A  =0D=0A    p, ul, ol {=0D=0A      font-size: 16px;=0D=0A    }=0D=0A =
+ =0D=0A=0D=0A  =0D=0A    body small {=0D=0A      font-size: 14px;=0D=0A    =
+}=0D=0A  =0D=0A=0D=0A  =0D=0A    p, h1, h2, small, ul, ol {=0D=0A      colo=
+r: #222222;=0D=0A    }=0D=0A  =0D=0A=0D=0A  =0D=0A=0D=0A  =0D=0A=0D=0A  =0D=
+=0A    a.intercom-content-link {=0D=0A      =0D=0A=0D=0A      =0D=0A=0D=0A =
+     =0D=0A        color: #2392ec !important;=0D=0A      =0D=0A    }=0D=0A=
+=0D=0A    a.intercom-content-link.intercom-header-link,=0D=0A    a.intercom=
+-content-link.intercom-footer-link {=0D=0A      =0D=0A=0D=0A      =0D=0A=0D=
+=0A      =0D=0A        color: #F84F39 !important;=0D=0A      =0D=0A    }=0D=
+=0A  =0D=0A=0D=0A  </style>=0D=0A=0D=0A<style>body {=0D=0Awidth: 100% !impo=
+rtant; min-width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; margin: 0; padding: 0; -moz-box-sizing: border-box; -webkit-box-si=
+zing: border-box; box-sizing: border-box;=0D=0A}=0D=0A.ExternalClass {=0D=
+=0Awidth: 100%;=0D=0A}=0D=0A.ExternalClass {=0D=0Aline-height: 100%;=0D=0A}=
+=0D=0A#backgroundTable {=0D=0Amargin: 0; padding: 0; width: 100% !important=
+; line-height: 100% !important;=0D=0A}=0D=0Aimg {=0D=0Aoutline: none; text-=
+decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: =
+100%; clear: both; display: block;=0D=0A}=0D=0Abody {=0D=0Acolor: #0a0a0a; =
+font-family: Helvetica, Arial, sans-serif; font-weight: normal; padding: 0;=
+ margin: 0; text-align: left; line-height: 130%;=0D=0A}=0D=0Abody {=0D=0Afo=
+nt-size: 16px; line-height: 130%;=0D=0A}=0D=0Abody.outlook p {=0D=0Adisplay=
+: inline !important;=0D=0A}=0D=0Abody h2 {=0D=0Afont-size: 22px;=0D=0A}=0D=
+=0Abody small {=0D=0Afont-size: 14px;=0D=0A}=0D=0A</style>=0D=0A</head>=0D=
+=0A<body style=3D"width: 100% !important; min-width: 100%; -webkit-text-siz=
+e-adjust: 100%; -ms-text-size-adjust: 100%; -moz-box-sizing: border-box; -w=
+ebkit-box-sizing: border-box; box-sizing: border-box; color: #0a0a0a; font-=
+family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left=
+; line-height: 130%; font-size: 16px; margin: 0; padding: 0;">=0D=0A<div st=
+yle=3D"color:transparent;visibility:hidden;opacity:0;font-size:0px;border:0=
+;max-height:1px;width:1px;margin:0px;padding:0px;border-width:0px!important=
+;display:none!important;line-height:0px!important;"><img border=3D"0" width=
+=3D"1" height=3D"1" src=3D"https://superlist.intercom-mail.eu/q/xr9wKrNpFTS=
+Z2WZFCwnAig~~/AAAzhgA~/RgRpRrzOPVcFc3BjZXVCCmdVzjdkZ4cgFtVSFG5pY28uYmFpZXJA=
+Z21haWwuY29tWAQAAAE1" alt=3D""/></div>=0D=0A=0D=0A    <table class=3D"body =
+intercom-template-body" style=3D"border-spacing: 0; border-collapse: collap=
+se; vertical-align: top; text-align: left; background-color: #FFFFFF; heigh=
+t: 100%; width: 100%; color: #0a0a0a; font-family: Helvetica, Arial, sans-s=
+erif; font-weight: normal; line-height: 130%; font-size: 16px; margin: 0; p=
+adding: 0;" bgcolor=3D"#FFFFFF">=0D=0A        <tbody>=0D=0A<tr style=3D"ver=
+tical-align: top; text-align: left; padding: 0;" align=3D"left">=0D=0A     =
+       <td class=3D"center" align=3D"center" valign=3D"top" style=3D"word-w=
+rap: break-word; -moz-hyphens: auto; hyphens: auto; border-collapse: collap=
+se !important; vertical-align: top; text-align: left; color: #0a0a0a; font-=
+family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 130=
+%; font-size: 16px; margin: 0; padding: 0;">=0D=0A                <center s=
+tyle=3D"width: 100%; min-width: 580px;"><table align=3D"center" class=3D"co=
+ntainer intercom-template-content" style=3D"border-spacing: 0; border-colla=
+pse: collapse; vertical-align: top; text-align: inherit; background-color: =
+#FFFFFF; width: 580px; margin: 0 auto; padding: 0;" bgcolor=3D"#FFFFFF"><tb=
+ody><tr style=3D"vertical-align: top; text-align: left; padding: 0;" align=
+=3D"left"><td style=3D"word-wrap: break-word; -moz-hyphens: auto; hyphens: =
+auto; border-collapse: collapse !important; vertical-align: top; text-align=
+: left; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-wei=
+ght: normal; line-height: 130%; font-size: 16px; margin: 0; padding: 16px;"=
+ align=3D"left" valign=3D"top">=0D=0A<div class=3D"intercom-spacer-containe=
+r">=0D=0A<table class=3D"spacer" style=3D"border-spacing: 0; border-collaps=
+e: collapse; vertical-align: top; text-align: left; width: 100%; padding: 0=
+;"><tbody><tr style=3D"vertical-align: top; text-align: left; padding: 0;" =
+align=3D"left">=0D=0A<td height=3D"25" style=3D"font-size: 25px; line-heigh=
+t: 25px; word-wrap: break-word; -moz-hyphens: auto; hyphens: auto; border-c=
+ollapse: collapse !important; vertical-align: top; text-align: left; color:=
+ #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; m=
+argin: 0; padding: 0;" align=3D"left" valign=3D"top"></td>=0D=0A</tr></tbod=
+y></table>=0D=0A</div>=0D=0A<div class=3D"intercom-container"><img src=3D"h=
+ttps://superlist.intercom-mail.eu/i/o/1224993/a0955dd47485c2ecd5f13af0/dkfj=
+.png=3Fexpires=3D1734623100&amp;signature=3D4aea8c65e0363dd809df1629204ad8=
+9199e9f66b8342303e9da6f9a23b353cb7&amp;req=3D0ddtwVHzr3sp0xr0v9tnpcIM0bZ1nA=
+wBilzx2AIPoAQkB%2Bo5YE7PZzT673UP%0A" width=3D"150" style=3D"width: 150px; o=
+utline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-w=
+idth: 100%; clear: both; display: block;"></div>=0D=0A</td></tr></tbody></t=
+able></center>=0D=0A<center style=3D"width: 100%; min-width: 580px;"><table=
+ align=3D"center" class=3D"container intercom-template-content" style=3D"bo=
+rder-spacing: 0; border-collapse: collapse; vertical-align: top; text-align=
+: inherit; background-color: #FFFFFF; width: 580px; margin: 0 auto; padding=
+: 0;" bgcolor=3D"#FFFFFF"><tbody><tr style=3D"vertical-align: top; text-ali=
+gn: left; padding: 0;" align=3D"left"><td style=3D"word-wrap: break-word; -=
+moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; ver=
+tical-align: top; text-align: left; color: #0a0a0a; font-family: Helvetica,=
+ Arial, sans-serif; font-weight: normal; line-height: 130%; font-size: 16px=
+; margin: 0; padding: 16px;" align=3D"left" valign=3D"top">=0D=0A<p style=
+=3D"color: #222222; font-family: Helvetica, Arial, sans-serif; font-weight:=
+ normal; text-align: left; line-height: 130%; font-size: 16px; margin: 0 0 =
+10px; padding: 0;" align=3D"left">Hi Nico,</p>=0D=0A<p style=3D"color: #222=
+222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-a=
+lign: left; line-height: 130%; font-size: 16px; margin: 0 0 10px; padding: =
+0;" align=3D"left">Thank you so much for being a Superlist user in 2024!</p=
+>=0D=0A<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-seri=
+f; font-weight: normal; text-align: left; line-height: 130%; font-size: 16p=
+x; margin: 0 0 10px; padding: 0;" align=3D"left">This was a big year for us=
+! We launched <a href=3D"https://superlist.intercom-clicks.eu/via/e=3Fob=3D=
+91lohkOisMnOQW9B7bzz9x5OSZOhjJ55LlRrDFkMQxMqr2iAz7%2BhERlSaUDVURN8flLSV18t9=
+NzVhlO1PIW5npQ3HES81yTWeAr5ymg6q4DyBg9gRw5k0z7BgtfcJjxQ6n1uPuguYc2DO67kqUxg=
+0te%2FU1ByP5ISGcrobO9MCd1BxVjYVlblQ2wleNQWHDncLhMm%2B3rS4fphxcYaYaKcDd%2FbV=
+9IvmIXbJnDEvKTTEdc%3D&h=3D9320928d02bb2d30a753813d6060a7c85f99aa59-a6qi4v4j=
+_202914601728886&l=3Dea498bdf9e392982004f4a02570dd1fa9eb36ab1-1414969" targ=
+et=3D"_blank" class=3D"intercom-content-link" style=3D"color: #2392ec !impo=
+rtant; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text=
+-align: left; line-height: 130%; text-decoration: none; margin: 0; padding:=
+ 0;">Superlist 1.0</a> in February and then got to work and shipped 27 app =
+updates this year.</p>=0D=0A<p style=3D"color: #222222; font-family: Helvet=
+ica, Arial, sans-serif; font-weight: normal; text-align: left; line-height:=
+ 130%; font-size: 16px; margin: 0 0 10px; padding: 0;" align=3D"left">We la=
+unched highly requested features like <a href=3D"https://superlist.intercom=
+-clicks.eu/via/e=3Fob=3D5wmCk6ruOPxbW%2FP9KN8HtA0Qa2noVonmus2Z2BnPGyzzMtlMk=
+%2BAZfu9VvMUpRqzDWCvbf0U2hCdJ9%2BF87kwJ9DbjM4dGmG9moGM3WISSoix5SWYGTnGJp72J=
+SBXCBscC%2FZOO8bkp8ePuWEL031fxW5TwMXpPgNFEbI7%2FB4EWSc7y1wvofjGeZF7TVsDZ0Tu=
+DywZiXhSZzXYajqJIx2aPK1U00WnpUkR2uRhNZolMkB4%3D&h=3D3f0eb133bd3e42e8b7d2aab=
+bd9d7127587868675-a6qi4v4j_202914601728886&l=3Dd1f9e78ef0c0dc3a82e62a347a12=
+23e001628226-1414971" target=3D"_blank" class=3D"intercom-content-link" sty=
+le=3D"color: #2392ec !important; font-family: Helvetica, Arial, sans-serif;=
+ font-weight: normal; text-align: left; line-height: 130%; text-decoration:=
+ none; margin: 0; padding: 0;">Reminders</a>, <a href=3D"https://superlist.=
+intercom-clicks.eu/via/e=3Fob=3DdFn549ShR5L62SCN%2BYaVJ6cOG1S59BiQKIRZ7flYv=
+IhcIlohwHQI2lsM%2BR%2FrLjW8R0KLbB1mLIsAP%2FmN9L6d3zfGb%2Bi5x62IRLzuFLQ3wG9h=
+R5WAr9j%2FFYr855XakOkik%2FOuAIvNX%2FUftX9jFSWlaqTsvyUU5x8SJQXIoNMoIbemdu2VB=
+BvyZbbsus2VVRKS&h=3D7df6feb03e168ee9ee64ffebcfb4a3f0cb6b40e9-a6qi4v4j_20291=
+4601728886&l=3D7753a06d71534499f3e9267a45c929506440ed5e-1414972" target=3D"=
+_blank" class=3D"intercom-content-link" style=3D"color: #2392ec !important;=
+ font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align=
+: left; line-height: 130%; text-decoration: none; margin: 0; padding: 0;">R=
+epeating Tasks</a>, <a href=3D"https://superlist.intercom-clicks.eu/via/e=
+=3Fob=3DS7935lIsn2pkfC5B8Z7F2zZtqHtBepwbEDSLnXz0%2FcXOa38BZj%2Fi32g2%2BG9Z9=
+D4WgyQhCPPwvNIX7aDSmyy364BphUxK8ON8JbkQj1rE0lhH1k5JAi%2FWxJ8xBkAUPZgbv1G9xK=
+DCmZsioW6JQnOfAYvxfdNAneCdEq5EoU%2FfD7w%3D&h=3D8849002b58884a98ff59365bace9=
+d2a56ae22be8-a6qi4v4j_202914601728886&l=3D81f9f43b604ec6d3dc8e1847b55af0a70=
+92e9d9f-1414973" target=3D"_blank" class=3D"intercom-content-link" style=3D=
+"color: #2392ec !important; font-family: Helvetica, Arial, sans-serif; font=
+-weight: normal; text-align: left; line-height: 130%; text-decoration: none=
+; margin: 0; padding: 0;">Offline Mode</a> and <a href=3D"https://superlist=
+.intercom-clicks.eu/via/e=3Fob=3DZaq5d7Xe7sAMaxHwmS2IAu9hqvLt1yq%2FuLpwmQf=
+Nmus46K8WaebBoUdvMY%2BbVrjIBNtOeX9ZQfj9uM9WOtpfTFfYXSqnPnt5L2h552E0kpYGiobW=
+JVAZq%2FNCtSPVOXfsUIdUKVttkS8Ve%2FOjB3EkQdKZju01aFsmLv9k0Tog5DSCIrTEr8LNlt3=
+pWsSwjPPN&h=3D22db7b77f96e478e4448a79a9a4abb6087e98996-a6qi4v4j_20291460172=
+8886&l=3D201f0bc67d410d51894c92e5a6fd78ae7d2ba234-1414974" target=3D"_blank=
+" class=3D"intercom-content-link" style=3D"color: #2392ec !important; font-=
+family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left=
+; line-height: 130%; text-decoration: none; margin: 0; padding: 0;">Natural=
+ Language Processing</a>. We introduced <a href=3D"https://superlist.interc=
+om-clicks.eu/via/e=3Fob=3DtGmUZAkXay6g8Pr%2BSzSfS%2FhzKptHkvsaBXxzqX2LV8xPS=
+amIN3bPUjZmqeRLNFn2k95tDVO4c3n%2BGZM2LF%2BEw%2F362u2g1bk%2BgFiXxaAIkcaJbLyH=
+jxzz7goiv%2F4jv6KZ%2B0SY5GDAYPKhJQqjvZx9OmUf2B46K9UB7v%2BLBgw19ROSRkjq%2FIS=
+skl%2BaxVhPqYay&h=3Dd8dfc4557a184d443ad48d2de88b4c6b548f02ca-a6qi4v4j_20291=
+4601728886&l=3D4838daccb91e9092763c70bb623480cf0afbc028-1414975" target=3D"=
+_blank" class=3D"intercom-content-link" style=3D"color: #2392ec !important;=
+ font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align=
+: left; line-height: 130%; text-decoration: none; margin: 0; padding: 0;">T=
+eam Workspaces</a> and a new view to see all <a href=3D"https://superlist.i=
+ntercom-clicks.eu/via/e=3Fob=3Dl7%2FxF57mn6aPvVg28mEDidtA%2Fa1LmaUGQ0y3D%2B=
+oVvz6ylFmHKK%2F%2FoNsPTGCY3d12y4YXhN0Inpab5PvBMIS4QIdW4zSFuj%2BxVsmW%2FGxPF=
+WhFiGRxBEqr7kaTbGmtF3nbZ1bLfaydV2cP5maNOAeLr%2FexTLcaupd9sLJAal4cC0k%3D&h=
+=3Dca7808ca8998a5011d994d9e4c7c87e1f83d589c-a6qi4v4j_202914601728886&l=3D8a=
+0a1c99107f91fb7f534137bc7e2c9738875398-1414976" target=3D"_blank" class=3D"=
+intercom-content-link" style=3D"color: #2392ec !important; font-family: Hel=
+vetica, Arial, sans-serif; font-weight: normal; text-align: left; line-heig=
+ht: 130%; text-decoration: none; margin: 0; padding: 0;">Updates</a> from y=
+our team. We shipped improvements like <a href=3D"https://superlist.interco=
+m-clicks.eu/via/e=3Fob=3De5bTp0Pn7emvbehjo85kcclkQoX247SsmUuQZHMD2vpHNSNIRN=
+64jpH9bIrHq7KeRk4JKwLCyizPITZAsxOp7plEMcauIJ4QqNoC9Mrw%2Fhz34x%2BQ1Qvb8yIR6=
+mYdKjSMjK%2BKHlTtXS4CQKlidzmD2U7CrHM72gWwne%2FrnVM9vkE%3D&h=3D2ce2bb54eaf53=
+9ad173e1984e43e56cad1cbe0db-a6qi4v4j_202914601728886&l=3Deb29a8913fab532953=
+5a132e66085cc54bf171e2-1414977" target=3D"_blank" class=3D"intercom-content=
+-link" style=3D"color: #2392ec !important; font-family: Helvetica, Arial, s=
+ans-serif; font-weight: normal; text-align: left; line-height: 130%; text-d=
+ecoration: none; margin: 0; padding: 0;">Tap To Open Tasks</a>, a better<a =
+href=3D"https://superlist.intercom-clicks.eu/via/e=3Fob=3Dl7%2FxF57mn6aPvVg=
+28mEDidtA%2Fa1LmaUGQ0y3D%2BoVvz6ylFmHKK%2F%2FoNsPTGCY3d12y4YXhN0Inpab5PvBMI=
+S4QIdW4zSFuj%2BxVsmW%2FGxPFWhFiGRxBEqr7kaTbGmtF3nbZ1bLfaydV2cP5maNOAeLr%2Fe=
+xTLcaupd9sLJAal4cC0k%3D&h=3Dca7808ca8998a5011d994d9e4c7c87e1f83d589c-a6qi4v=
+4j_202914601728886&l=3D8a0a1c99107f91fb7f534137bc7e2c9738875398-1414976" ta=
+rget=3D"_blank" class=3D"intercom-content-link" style=3D"color: #2392ec !im=
+portant; font-family: Helvetica, Arial, sans-serif; font-weight: normal; te=
+xt-align: left; line-height: 130%; text-decoration: none; margin: 0; paddin=
+g: 0;"> Navigation</a> and <a href=3D"https://superlist.intercom-clicks.eu/=
+via/e=3Fob=3DsLZvd01RI1PfuU6sEjuyByncqg2Qw5pwJW7aRMatb%2Fo370kb6K3GAlAXRZg%=
+2Fd3xtPGeILLcUeh24p%2BIf11lNkj0XSVidZm7nG8EGU7dWKB%2B4Q1MrMCat0hQLWCol5ONl7=
+Rs6ucaAUbDELtVbqXEOPtZ4vvj9aLeEncB2tIjDmVMCo8UseOsuNIiK1SGMXuft&h=3D4d0b07f=
+f8aa66f3d29318724be5e2708a916b1ab-a6qi4v4j_202914601728886&l=3De67814e19517=
+e0cc9b8f06555f280fe449210222-1414978" target=3D"_blank" class=3D"intercom-c=
+ontent-link" style=3D"color: #2392ec !important; font-family: Helvetica, Ar=
+ial, sans-serif; font-weight: normal; text-align: left; line-height: 130%; =
+text-decoration: none; margin: 0; padding: 0;">Content Editing Experience</=
+a> on mobile, <a href=3D"https://superlist.intercom-clicks.eu/via/e=3Fob=3D=
+U1B6Pcq3J0b60Da5GdHoeo5YI%2FmmA8cfoVbFWY%2FY13HOnkm3cNopS8dsfYrPCR3Psa5amUQ=
+z15Z1q2pVUag7am4ZuzVhUEfAmmlPemWVPmGpPF1HRwocX0l7KXNR9pXvrkIKRI3FKtzh6WDieF=
+stoTy25L3hpn%2BT5h4nIECeGBI%3D&h=3Dfa365a328932fcf4ffd186eb5c6d2c1de0bf5672=
+-a6qi4v4j_202914601728886&l=3Df9531902003b707b227366958c415b51c118ed96-1414=
+979" target=3D"_blank" class=3D"intercom-content-link" style=3D"color: #239=
+2ec !important; font-family: Helvetica, Arial, sans-serif; font-weight: nor=
+mal; text-align: left; line-height: 130%; text-decoration: none; margin: 0;=
+ padding: 0;">Search</a> for tasks and lists, <a href=3D"https://superlist.=
+intercom-clicks.eu/via/e=3Fob=3DsVaLkc4Gcgo4uxY0cswo3mVfDeTVhYritUeGEVKNWBJ=
+6YcwJoMtNB87SwBuanUUcB6FdqMIILB76oJKD5Tw42OzZJX9nafmxGhnNqL%2BHXHz0wxUSia44=
+RRPLa5OD5NAa3AbvSBkt9%2FFMCPwWso0Qidawqhmy2N33mMaNy%2Bi13lc%3D&h=3Dab79456f=
+a879f05b00384ae391a22ac119288a88-a6qi4v4j_202914601728886&l=3D55a082bfe6bef=
+332240ddc055bb26463f23eef46-1414980" target=3D"_blank" class=3D"intercom-co=
+ntent-link" style=3D"color: #2392ec !important; font-family: Helvetica, Ari=
+al, sans-serif; font-weight: normal; text-align: left; line-height: 130%; t=
+ext-decoration: none; margin: 0; padding: 0;">Widgets for iOS</a><b> </b>an=
+d <a href=3D"https://superlist.intercom-clicks.eu/via/e=3Fob=3DsVaLkc4Gcgo4=
+uxY0cswo3mVfDeTVhYritUeGEVKNWBJ6YcwJoMtNB87SwBuanUUcB6FdqMIILB76oJKD5Tw42Oz=
+ZJX9nafmxGhnNqL%2BHXHz0wxUSia44RRPLa5OD5NAa3AbvSBkt9%2FFMCPwWso0Qidawqhmy2N=
+33mMaNy%2Bi13lc%3D&h=3Dab79456fa879f05b00384ae391a22ac119288a88-a6qi4v4j_20=
+2914601728886&l=3D55a082bfe6bef332240ddc055bb26463f23eef46-1414980" target=
+=3D"_blank" class=3D"intercom-content-link" style=3D"color: #2392ec !import=
+ant; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-a=
+lign: left; line-height: 130%; text-decoration: none; margin: 0; padding: 0=
+;">Android</a> and now <a href=3D"https://superlist.intercom-clicks.eu/via/=
+e=3Fob=3DHHKMcqFvtIYy9lNfqoSiinqnRdIizYHXW6L8o8H2PRm7%2FzLw2i6AEjtfaCf6CoCv=
+b5oox7QoIYTryr4xLB5WMe3FHuaXYcV25xOC%2BKwKCKTJtd3sFvTVjobgqlTLxd8fIT2%2FSIy=
+dVPnj1BHZcStZxgSlfUbBrgSdfYbCg6mvJTM%3D&h=3Dfab9f7bc169c6f0c0da6ccb4b1e75d3=
+9430c1fa6-a6qi4v4j_202914601728886&l=3D4c0a0a44cca5f94e6a263df639f25fbf570d=
+cfc7-1414981" target=3D"_blank" class=3D"intercom-content-link" style=3D"co=
+lor: #2392ec !important; font-family: Helvetica, Arial, sans-serif; font-we=
+ight: normal; text-align: left; line-height: 130%; text-decoration: none; m=
+argin: 0; padding: 0;">Sublists</a> to help you better organize your worksp=
+ace. And of course we invested heavily in AI, with features like <a href=3D=
+"https://superlist.intercom-clicks.eu/via/e=3Fob=3DtW0o6Xa1zO69ANpZf20v0aR5=
+skf4GLwzYzjL6yoRfPxo5DELeNG%2Fb771lScWOgHDAhgGOPGLetbPGSzBZ7mGgBMWK1lIr5L5x=
+NKW%2F8yylLY9RFzm5g9n%2Fi89x3hRMfWY7gJhV6jQiecqSG8sPG3aLnKYDW%2Frl6tmpGq7EY=
+oKgrI%3D&h=3De236402e1506237ee3321f130f78d676d206097b-a6qi4v4j_202914601728=
+886&l=3D1bb64df3b4b614bb1a1eec692b26fa3503bce4a8-1414982" target=3D"_blank"=
+ class=3D"intercom-content-link" style=3D"color: #2392ec !important; font-f=
+amily: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left;=
+ line-height: 130%; text-decoration: none; margin: 0; padding: 0;">Make</a>=
+ and our <a href=3D"https://superlist.intercom-clicks.eu/via/e=3Fob=3DDfdGI=
+1%2B4Ua0D0hUgdMn3DCARQcEgiJUeLWp7rYgbIWZGLWXViKrJmhC6F2FUCJD2iSAABYVsiDq%2F=
+dlGGsAVIH0TVDov7J5o104uW0VB%2FS0WUZlCKQx1zbr5dRug9o31IjNYoKIGCe%2F08g%2FkE%=
+2F215Mxky13jwCHYUoR5z22WgohU%3D&h=3De3b4095573e06ff30274653eb9012606d91700e=
+b-a6qi4v4j_202914601728886&l=3D537ced4654dfcd5168bee7c4a09fa835a5ec5474-141=
+4983" target=3D"_blank" class=3D"intercom-content-link" style=3D"color: #23=
+92ec !important; font-family: Helvetica, Arial, sans-serif; font-weight: no=
+rmal; text-align: left; line-height: 130%; text-decoration: none; margin: 0=
+; padding: 0;">AI voice assistant Talk</a> that turns your voice notes into=
+ lists of tasks and notes.</p>=0D=0A<p style=3D"color: #222222; font-family=
+: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line=
+-height: 130%; font-size: 16px; margin: 0 0 10px; padding: 0;" align=3D"lef=
+t">We=E2=80=99re just getting started and we have big plans for 2025.</p>=
+=0D=0A<p style=3D"color: #222222; font-family: Helvetica, Arial, sans-serif=
+; font-weight: normal; text-align: left; line-height: 130%; font-size: 16px=
+; margin: 0 0 10px; padding: 0;" align=3D"left"><b>Productivity is having i=
+ts Spotify moment. </b></p>=0D=0A<p style=3D"color: #222222; font-family: H=
+elvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-he=
+ight: 130%; font-size: 16px; margin: 0 0 10px; padding: 0;" align=3D"left">=
+Remember all the manual work of managing digital music before Spotify =E2=
+=80=94downloading titles, managing folders, naming files, adding artwork an=
+d meta data by hand=3F That=E2=80=99s task management in 2024. Leveraging A=
+I, we=E2=80=99re building a future where your task management app does this=
+ work for you, so you can focus on what matters: creating and achieving gre=
+at things.</p>=0D=0A<p style=3D"color: #222222; font-family: Helvetica, Ari=
+al, sans-serif; font-weight: normal; text-align: left; line-height: 130%; f=
+ont-size: 16px; margin: 0 0 10px; padding: 0;" align=3D"left">Here's what y=
+ou can expect in 2025: </p>=0D=0A<ol style=3D"font-size: 16px; color: #2222=
+22;">=0D=0A<li>Best-in-class <b>AI voice recording</b> features to turn you=
+r thoughts and meetings into actions, </li>=0D=0A<li>New <b>AI-powered edit=
+ing and task management</b> capabilities, </li>=0D=0A<li>Quality of life im=
+provements such as more intuitive sharing, multi select, improved reminders=
+, labels, a better search, </li>=0D=0A<li>Templates and <b>better collabora=
+tion</b> across lists and team spaces.</li>=0D=0A</ol>=0D=0A<p style=3D"col=
+or: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal=
+; text-align: left; line-height: 130%; font-size: 16px; margin: 0 0 10px; p=
+adding: 0;" align=3D"left">Thank you for being on this journey with us. We =
+really appreciate your support and feedback.</p>=0D=0A<p style=3D"color: #2=
+22222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text=
+-align: left; line-height: 130%; font-size: 16px; margin: 0 0 10px; padding=
+: 0;" align=3D"left">Happy holidays,  <br>Niklas and the Superlist team</p>=
+=0D=0A</td></tr></tbody></table></center>=0D=0A<center style=3D"width: 100%=
+; min-width: 580px;"><table align=3D"center" class=3D"container intercom-te=
+mplate-content" style=3D"border-spacing: 0; border-collapse: collapse; vert=
+ical-align: top; text-align: inherit; background-color: #FFFFFF; width: 580=
+px; margin: 0 auto; padding: 0;" bgcolor=3D"#FFFFFF"><tbody><tr style=3D"ve=
+rtical-align: top; text-align: left; padding: 0;" align=3D"left"><td style=
+=3D"word-wrap: break-word; -moz-hyphens: auto; hyphens: auto; border-collap=
+se: collapse !important; vertical-align: top; text-align: left; color: #0a0=
+a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-h=
+eight: 130%; font-size: 16px; margin: 0; padding: 16px;" align=3D"left" val=
+ign=3D"top">=0D=0A<p class=3D"text-center" style=3D"text-align: center; col=
+or: #222222; font-family: Helvetica, Arial, sans-serif; font-weight: normal=
+; line-height: 130%; font-size: 16px; margin: 0 0 10px; padding: 0;" align=
+=3D"center"><small style=3D"color: #222222; font-size: 14px;">Copyright =C2=
+=A9 2024 Superlist Software GmbH Joachimstr. 7, 10119 Berlin, Germany</smal=
+l></p>=0D=0A<p class=3D"text-center" style=3D"text-align: center; color: #2=
+22222; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line=
+-height: 130%; font-size: 16px; margin: 0 0 10px; padding: 0;" align=3D"cen=
+ter"><small style=3D"color: #222222; font-size: 14px;">Local Court of Charl=
+ottenburg HRB 193605 B Managing Director: Niklas Jansen<br><br><a href=3D"h=
+ttps://superlist.intercom-mail.eu/subscriptions/unsubscribe=3Fapp_id=3Da6qi=
+4v4j&conversation_id=3D202914601728886&user_id=3D65bc2aec8271f2a38129f6ce&s=
+ource=3Dbody" target=3D"_blank" class=3D"intercom-content-link intercom-foo=
+ter-link" style=3D"color: #F84F39 !important; font-family: Helvetica, Arial=
+, sans-serif; font-weight: normal; text-align: left; line-height: 130%; tex=
+t-decoration: none; margin: 0; padding: 0;">Manage your email preferences</=
+a></small></p>=0D=0A</td></tr></tbody></table></center>=0D=0A            </=
+td>=0D=0A        </tr>=0D=0A    </tbody>=0D=0A</table>=0D=0A=0D=0A=0D=0A<im=
+g src=3D"https://superlist.intercom-mail.eu/via/o=3Fh=3D3cfe6fbabb1b1cb324a=
+9df76d5e2abc5638ceebd-a6qi4v4j_202914601728886" width=3D"1" height=3D"1" st=
+yle=3D"display: block;" alt=3D"intercom">=0D=0A=0D=0A<img border=3D"0" widt=
+h=3D"1" height=3D"1" alt=3D"" src=3D"https://superlist.intercom-mail.eu/q/D=
+KmZVABD46NOu6UaEvbNnw~~/AAAzhgA~/RgRpRrzOPlcFc3BjZXVCCmdVzjdkZ4cgFtVSFG5pY2=
+8uYmFpZXJAZ21haWwuY29tWAQAAAE1">=0D=0A</body>=0D=0A</html>
+--_----AZcEkWQRgTUvam4UUjGE+A===_3D/69-63110-EC734676--
+
+

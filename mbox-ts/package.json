@@ -1,0 +1,21 @@
+{
+	"name": "mbox-ts",
+	"module": "src/index.ts",
+	"type": "module",
+	"private": true,
+	"devDependencies": {
+		"@biomejs/biome": "2.2.4",
+		"@types/bun": "latest",
+		"@types/mailparser": "^3.4.6",
+		"vitest": "latest"
+	},
+	"scripts": {
+		"test": "vitest"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"mailparser": "^3.7.4"
+	}
+}
