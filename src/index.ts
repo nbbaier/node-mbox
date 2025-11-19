@@ -19,6 +19,9 @@ export {
   MboxEvents,
 } from './types';
 
+// Export custom error classes
+export { MboxValidationError } from './errors';
+
 // Optional parser exports (only available if mailparser is installed)
 export type {
   ParsedEmail,

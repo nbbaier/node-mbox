@@ -148,9 +148,10 @@ export class AttachmentExtractor {
   private async findUniquePath(dir: string, filename: string): Promise<string> {
     const ext = path.extname(filename);
     const stem = path.basename(filename, ext);
+    const MAX_ATTEMPTS = 10000;
 
     let counter = 1;
-    while (true) {
+    while (counter <= MAX_ATTEMPTS) {
       const candidate = path.join(dir, `${stem} (${counter})${ext}`);
       try {
         await fs.promises.access(candidate);
@@ -159,5 +160,10 @@ export class AttachmentExtractor {
         return candidate;
       }
     }
+
+    throw new Error(
+      `Unable to find unique path for "${filename}" after ${MAX_ATTEMPTS} attempts. ` +
+        'Check filesystem permissions or available disk space.'
+    );
   }
 }

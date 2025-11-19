@@ -5,6 +5,7 @@
 
 import { Transform, TransformCallback } from 'stream';
 import { MessageBoundary } from './types';
+import { MboxValidationError } from './errors';
 
 /**
  * A Transform stream that parses a raw mbox file byte stream
@@ -51,7 +52,7 @@ export class MboxParserStream extends Transform {
           } else if (this.strict) {
             // In strict mode, file MUST start with 'From '
             callback(
-              new Error('NOT_AN_MBOX_FILE: File does not start with "From " line')
+              new MboxValidationError('File does not start with "From " line')
             );
             return;
           }
@@ -65,7 +66,7 @@ export class MboxParserStream extends Transform {
             this.isFirstChunk = false;
             if (this.strict) {
               callback(
-                new Error('NOT_AN_MBOX_FILE: File does not start with "From " line')
+                new MboxValidationError('File does not start with "From " line')
               );
               return;
             }
