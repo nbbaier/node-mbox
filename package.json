@@ -1,9 +1,9 @@
 {
   "name": "mbox",
-  "version": "0.2.0",
-  "description": "Modern TypeScript wrapper for mboxrd files with stream-based architecture",
+  "version": "0.3.0",
+  "description": "Modern TypeScript wrapper for mboxrd files with stream-based architecture and optional email parsing",
   "homepage": "https://github.com/ditesh/node-mbox",
-  "keywords": ["mbox", "mboxrd", "mail", "email", "typescript", "streams"],
+  "keywords": ["mbox", "mboxrd", "mail", "email", "typescript", "streams", "parser", "attachments"],
   "author": {
     "name": "Ditesh Shashikant Gathani",
     "email": "ditesh@gathani.org",
@@ -27,6 +27,14 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
   },
   "dependencies": {},
+  "peerDependencies": {
+    "mailparser": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "mailparser": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@types/jest": "^29.5.0",
     "@types/node": "^20.0.0",

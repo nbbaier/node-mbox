@@ -8,13 +8,20 @@ Modern TypeScript library for parsing and manipulating mbox files with a stream-
 - **Modern TypeScript**: Full TypeScript support with strict typing
 - **Dual API**: Both Promise-based (modern) and Event-based (legacy) APIs
 - **Fast Random Access**: Efficiently retrieve any message without scanning the entire file
-- **Zero Dependencies**: Uses only Node.js built-in modules
+- **Zero Dependencies**: Core functionality uses only Node.js built-in modules
+- **Optional Email Parsing**: Structured email parsing with mailparser integration (optional)
+- **Attachment Extraction**: Extract and deduplicate attachments with flexible filtering
+- **Strict Mode**: Validate mbox file format compliance
 - **Comprehensive Testing**: High test coverage with edge case handling
 
 ## Installation
 
 ```bash
+# Core library (zero dependencies)
 npm install mbox
+
+# With optional email parsing support
+npm install mbox mailparser
 ```
 
 ## Quick Start
@@ -189,6 +196,79 @@ The Mbox class extends EventEmitter and emits the following events:
 - `write(success: boolean, filename?: string)` - Emitted when the mbox is written to disk
 - `error(error: Error)` - Emitted on errors
 
+## Email Parsing & Attachment Extraction (v0.3+)
+
+The library now supports optional email parsing and attachment extraction:
+
+### Parse Emails
+
+```typescript
+import { Mbox } from 'mbox';
+
+const mbox = await Mbox.create('mailbox.mbox');
+mbox.useParser(); // Enable parsing (requires mailparser)
+
+// Get parsed email
+const email = await mbox.getParsed(0);
+console.log(email.subject, email.from, email.attachments);
+
+// Parse multiple messages
+const emails = await mbox.getParsedBatch([0, 1, 2]);
+
+// Iterate through all with parsing
+for await (const { index, email } of mbox.iterateParsed()) {
+  console.log(`Message ${index}: ${email.subject}`);
+}
+```
+
+### Extract Attachments
+
+```typescript
+// Extract all attachments with deduplication
+const result = await mbox.extractAttachments({
+  outputDir: './attachments',
+  deduplicate: true,
+  filter: (att) => att.contentType.includes('pdf'),
+  onConflict: 'rename',
+});
+
+console.log(`Extracted ${result.extracted} attachments`);
+
+// Extract from specific messages only
+await mbox.extractAttachments({
+  outputDir: './important-attachments',
+  messageIndices: [5, 10, 15],
+  filter: (att, messageIndex) => att.size > 1024 * 100, // > 100KB
+});
+```
+
+### Strict Mode Validation
+
+```typescript
+// Validate that file is a proper mbox file
+try {
+  const mbox = await Mbox.create('mailbox.mbox', {
+    strict: true, // Throws if file doesn't start with "From "
+  });
+  console.log('Valid mbox file');
+} catch (error) {
+  console.log('Invalid mbox file');
+}
+```
+
+### Without mailparser
+
+If you don't install mailparser, the core functionality still works:
+
+```typescript
+// This works fine without mailparser
+const mbox = await Mbox.create('mailbox.mbox');
+const rawEmail = await mbox.get(0); // Returns raw string
+
+// Parsing features require mailparser
+mbox.useParser(); // Throws error if mailparser not installed
+```
+
 ## Architecture
 
 The library uses a stream-based architecture for memory efficiency:
@@ -196,6 +276,8 @@ The library uses a stream-based architecture for memory efficiency:
 1. **MboxParserStream**: A Transform stream that detects message boundaries (`\nFrom ` lines)
 2. **Mbox**: Main class that uses the parser to build an index of message offsets/sizes
 3. **Random Access**: Uses `fs.createReadStream` with byte ranges to retrieve specific messages
+4. **Optional Parser**: EmailParser wraps mailparser for structured email parsing (optional dependency)
+5. **Attachment Extractor**: Handles file extraction with deduplication and filtering
 
 This approach allows the library to handle arbitrarily large mbox files with constant memory usage.
 

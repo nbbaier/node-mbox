@@ -107,6 +107,12 @@ export interface MboxOptions {
    * This skips the initial file scan
    */
   savedIndex?: MboxMessageJSON[];
+
+  /**
+   * If true, throw error if file doesn't start with 'From '
+   * @default false
+   */
+  strict?: boolean;
 }
 
 /**
