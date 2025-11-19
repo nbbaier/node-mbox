@@ -571,7 +571,7 @@ export class Mbox extends EventEmitter {
     // Collect all attachments
     for (const index of indices) {
       const email = await this.getParsed(index, {
-        checksumAttachments: options.deduplicate ?? undefined,
+        checksumAttachments: options.deduplicate,
         skipTextBody: true,
         skipHtmlBody: true,
       });
@@ -586,9 +586,9 @@ export class Mbox extends EventEmitter {
     // Extract them
     return extractor.extractFromEmails(allAttachments, {
       outputDir: options.outputDir,
-      deduplicate: options.deduplicate ?? undefined,
-      sanitizeFilenames: options.sanitizeFilenames ?? undefined,
-      onConflict: options.onConflict ?? undefined,
+      deduplicate: options.deduplicate,
+      sanitizeFilenames: options.sanitizeFilenames,
+      onConflict: options.onConflict,
     });
   }
 }

@@ -95,16 +95,10 @@ async function processMailbox() {
   // Step 4: Create a cleaned mailbox (remove messages without attachments)
   console.log('\n=== Step 4: Creating filtered mailbox ===');
   let deleteCount = 0;
-  for (let i = 0; i < mbox.totalCount(); i++) {
-    try {
-      const email = await mbox.getParsed(i, { skipTextBody: true, skipHtmlBody: true });
-      if (email.attachments.length === 0) {
-        await mbox.delete(i);
-        deleteCount++;
-      }
-    } catch (error) {
-      // Message might be already deleted or invalid
-      continue;
+  for await (const { index, email } of mbox.iterateParsed({ skipTextBody: true, skipHtmlBody: true })) {
+    if (email.attachments.length === 0) {
+      await mbox.delete(index);
+      deleteCount++;
     }
   }
 

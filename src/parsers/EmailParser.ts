@@ -16,7 +16,7 @@ export interface ParsedEmail {
   text: string | undefined;
   html: string | false | undefined;
   attachments: EmailAttachment[];
-  headers: Map<string, string>;
+  headers: Map<string, string | string[] | any>;
 }
 
 export interface EmailAttachment {
