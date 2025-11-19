@@ -18,3 +18,19 @@ export {
   MboxMessageJSON,
   MboxEvents,
 } from './types';
+
+// Export custom error classes
+export { MboxValidationError } from './errors';
+
+// Optional parser exports (only available if mailparser is installed)
+export type {
+  ParsedEmail,
+  EmailAttachment,
+  ParserOptions,
+} from './parsers/EmailParser';
+
+export type { ExtractionOptions, ExtractionResult } from './utils/AttachmentExtractor';
+
+// Export parser classes for advanced usage
+export { EmailParser } from './parsers/EmailParser';
+export { AttachmentExtractor } from './utils/AttachmentExtractor';

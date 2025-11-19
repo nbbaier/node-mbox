@@ -5,6 +5,7 @@
 
 import { Transform, TransformCallback } from 'stream';
 import { MessageBoundary } from './types';
+import { MboxValidationError } from './errors';
 
 /**
  * A Transform stream that parses a raw mbox file byte stream
@@ -19,12 +20,14 @@ export class MboxParserStream extends Transform {
   private absoluteOffset: number = 0;
   private tail: Buffer = Buffer.alloc(0);
   private isFirstChunk: boolean = true;
+  private strict: boolean;
   private static readonly DELIMITER = Buffer.from('\nFrom ');
   private static readonly DELIMITER_START = Buffer.from('From ');
 
-  constructor() {
+  constructor(options: { strict?: boolean } = {}) {
     // We emit MessageBoundary objects, not raw bytes
     super({ objectMode: true });
+    this.strict = options.strict ?? false;
   }
 
   override _transform(
@@ -46,6 +49,12 @@ export class MboxParserStream extends Transform {
           if (this.startsWithFromLine(searchBuffer)) {
             // File starts with a message boundary
             this.push({ offset: 0 } as MessageBoundary);
+          } else if (this.strict) {
+            // In strict mode, file MUST start with 'From '
+            callback(
+              new MboxValidationError('File does not start with "From " line')
+            );
+            return;
           }
         } else {
           // Not enough bytes yet - check if what we have could still be the start of "From "
@@ -55,6 +64,12 @@ export class MboxParserStream extends Transform {
           if (!canStillMatch) {
             // Definitely doesn't start with "From ", stop checking
             this.isFirstChunk = false;
+            if (this.strict) {
+              callback(
+                new MboxValidationError('File does not start with "From " line')
+              );
+              return;
+            }
           }
           // else: might still match, keep checking in next chunk
         }

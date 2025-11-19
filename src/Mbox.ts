@@ -18,6 +18,12 @@ import {
   MboxNotReadyError,
   MessageNotFoundError,
 } from './types';
+import { EmailParser, ParsedEmail, ParserOptions, EmailAttachment } from './parsers/EmailParser';
+import {
+  AttachmentExtractor,
+  ExtractionOptions,
+  ExtractionResult,
+} from './utils/AttachmentExtractor';
 
 /**
  * Main class for parsing and manipulating mbox files.
@@ -47,6 +53,7 @@ interface NormalizedMboxOptions {
   bufferSize: number;
   encoding: BufferEncoding;
   savedIndex?: MboxMessageJSON[];
+  strict: boolean;
 }
 
 export class Mbox extends EventEmitter {
@@ -58,6 +65,7 @@ export class Mbox extends EventEmitter {
   private readyPromise: Promise<void>;
   private readyResolve?: () => void;
   private readyReject?: (error: Error) => void;
+  private parser?: EmailParser;
 
   /**
    * Creates a new Mbox instance.
@@ -75,6 +83,7 @@ export class Mbox extends EventEmitter {
       debug: options.debug ?? false,
       bufferSize: options.bufferSize ?? 65536,
       encoding: options.encoding ?? 'utf8',
+      strict: options.strict ?? false,
       ...(options.savedIndex !== undefined && { savedIndex: options.savedIndex }),
     };
 
@@ -159,7 +168,7 @@ export class Mbox extends EventEmitter {
       const readStream = fs.createReadStream(this.filename, {
         highWaterMark: this.options.bufferSize,
       });
-      const parser = new MboxParserStream();
+      const parser = new MboxParserStream({ strict: this.options.strict });
 
       readStream.pipe(parser);
 
@@ -411,6 +420,175 @@ export class Mbox extends EventEmitter {
       stream.on('data', (chunk) => chunks.push(chunk.toString()));
       stream.on('end', () => resolve(chunks.join('')));
       stream.on('error', reject);
+    });
+  }
+
+  /**
+   * Enable email parsing functionality
+   * Requires 'mailparser' peer dependency
+   *
+   * @returns this for method chaining
+   * @throws Error if mailparser is not installed
+   *
+   * @example
+   * const mbox = await Mbox.create('mail.mbox');
+   * mbox.useParser();
+   * const email = await mbox.getParsed(0);
+   */
+  useParser(): this {
+    if (!this.parser) {
+      this.parser = new EmailParser();
+    }
+    return this;
+  }
+
+  /**
+   * Get and parse a message in one operation
+   * Returns structured email object instead of raw string
+   *
+   * @param index - The message index to retrieve and parse
+   * @param options - Parser options
+   * @returns Parsed email with structured data
+   * @throws Error if parser not initialized (call useParser() first)
+   * @throws MboxNotReadyError if mbox not ready
+   * @throws MessageNotFoundError if index invalid or message deleted
+   *
+   * @example
+   * const mbox = await Mbox.create('mail.mbox');
+   * mbox.useParser();
+   * const email = await mbox.getParsed(0);
+   * console.log(email.subject, email.attachments);
+   */
+  async getParsed(index: number, options: ParserOptions = {}): Promise<ParsedEmail> {
+    if (!this.parser) {
+      throw new Error(
+        'Parser not initialized. Call useParser() first or install mailparser.'
+      );
+    }
+
+    // Get raw message as stream for memory efficiency
+    const stream = (await this.get(index, { asStream: true })) as Readable;
+
+    // Parse it
+    return this.parser.parse(stream, options);
+  }
+
+  /**
+   * Batch parse multiple messages
+   *
+   * @param indices - Array of message indices to parse
+   * @param options - Parser options
+   * @returns Array of parsed emails
+   * @throws Error if parser not initialized
+   *
+   * @example
+   * const mbox = await Mbox.create('mail.mbox');
+   * mbox.useParser();
+   * const emails = await mbox.getParsedBatch([0, 1, 2]);
+   * emails.forEach(email => console.log(email.subject));
+   */
+  async getParsedBatch(
+    indices: number[],
+    options: ParserOptions = {}
+  ): Promise<ParsedEmail[]> {
+    const results: ParsedEmail[] = [];
+
+    for (const index of indices) {
+      results.push(await this.getParsed(index, options));
+    }
+
+    return results;
+  }
+
+  /**
+   * Iterate through all messages with parsing
+   * Memory efficient - processes one message at a time
+   *
+   * @param options - Parser options
+   * @yields Object containing message index and parsed email
+   * @throws Error if parser not initialized
+   *
+   * @example
+   * const mbox = await Mbox.create('mail.mbox');
+   * mbox.useParser();
+   * for await (const { index, email } of mbox.iterateParsed()) {
+   *   console.log(`Message ${index}: ${email.subject}`);
+   * }
+   */
+  async *iterateParsed(
+    options: ParserOptions = {}
+  ): AsyncGenerator<{ index: number; email: ParsedEmail }> {
+    for (let i = 0; i < this.messages.length; i++) {
+      const msg = this.messages[i];
+      if (msg && !msg.deleted) {
+        const email = await this.getParsed(i, options);
+        yield { index: i, email };
+      }
+    }
+  }
+
+  /**
+   * Extract all attachments from the mbox file
+   *
+   * @param options - Extraction options
+   * @returns Extraction result with statistics
+   * @throws Error if parser not initialized
+   *
+   * @example
+   * const mbox = await Mbox.create('mail.mbox');
+   * mbox.useParser();
+   * const result = await mbox.extractAttachments({
+   *   outputDir: './attachments',
+   *   deduplicate: true,
+   *   filter: (att) => att.contentType.includes('pdf'),
+   * });
+   * console.log(`Extracted ${result.extracted} files`);
+   */
+  async extractAttachments(
+    options: Omit<ExtractionOptions, 'filter'> & {
+      /**
+       * Only extract from specific message indices
+       */
+      messageIndices?: number[];
+
+      /**
+       * Filter attachments
+       */
+      filter?: (attachment: EmailAttachment, messageIndex: number) => boolean;
+    }
+  ): Promise<ExtractionResult> {
+    if (!this.parser) {
+      throw new Error('Parser not initialized. Call useParser() first.');
+    }
+
+    const extractor = new AttachmentExtractor();
+    const allAttachments: EmailAttachment[] = [];
+
+    const indices =
+      options.messageIndices ||
+      this.messages.map((msg, i) => (msg.deleted ? -1 : i)).filter((i) => i >= 0);
+
+    // Collect all attachments
+    for (const index of indices) {
+      const email = await this.getParsed(index, {
+        checksumAttachments: options.deduplicate,
+        skipTextBody: true,
+        skipHtmlBody: true,
+      });
+
+      for (const attachment of email.attachments) {
+        if (!options.filter || options.filter(attachment, index)) {
+          allAttachments.push(attachment);
+        }
+      }
+    }
+
+    // Extract them
+    return extractor.extractFromEmails(allAttachments, {
+      outputDir: options.outputDir,
+      deduplicate: options.deduplicate,
+      sanitizeFilenames: options.sanitizeFilenames,
+      onConflict: options.onConflict,
     });
   }
 }
